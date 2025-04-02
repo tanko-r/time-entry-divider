@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Entry Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dashboard View (Initially Visible) -->
+    <div id="dashboard" class="dashboard-container">
+        <h1>Time Entry Dashboard</h1>
+        <button id="createNewEntryBtn" class="button-primary">Create New Entry</button>
+
+        <h2>Recent Entries (Last 5)</h2>
+        <ul id="recentEntriesList">
+            <!-- Recent entries will be loaded here by JavaScript -->
+            <li>No recent entries found.</li>
+        </ul>
+    </div>
+
+    <!-- Entry Form Modal (Initially Hidden) -->
+    <div id="entryModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-button" id="closeModalBtn" title="Close">&times;</button>
+            <div class="container form-container">
+                 <h1 id="modalTitle">Create New Time Entry</h1>
+
+                 <form id="timeEntryForm">
+                    <!-- Hidden input to store the ID of the entry being edited -->
+                    <input type="hidden" id="entryId" name="entryId">
+
+                    <!-- Row for Matter and Total Time -->
+                    <div class="form-row form-row-flex">
+                        <div class="form-group form-group-matter">
+                            <label for="matterName">Matter Name:</label>
+                            <input type="text" id="matterName" name="matterName" required>
+                        </div>
+                        <div class="form-group form-group-total-time">
+                            <label for="totalTime">Total Time:</label>
+                            <input type="number" id="totalTime" name="totalTime" step="0.1" min="0.1" required>
+                            <span id="timeMatchWarning" class="warning"></span>
+                        </div>
+                    </div>
+
+                    <!-- Narrative Row -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mainNarrative">Narrative:</label>
+                            <textarea id="mainNarrative" name="mainNarrative" rows="4" required></textarea>
+                            <small>Enter the overall narrative, or use tasks below to build it.</small>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Task Breakdown Section -->
+                    <h2>Task Breakdown (Optional)</h2>
+                    <button type="button" id="addTaskBtn">Add Task</button>
+                    <!-- CORRECTED HTML COMMENT BELOW -->
+                    <small class="shortcut-help">Shortcuts: Alt+K = Add Task, Ctrl+Enter = Save Entry</small>
+                    <div id="tasksContainer">
+                        <!-- Task items will be added here by JavaScript -->
+                    </div>
+
+                    <hr>
+
+                    <!-- Modal Action Buttons -->
+                    <div class="modal-actions">
+                        <button type="button" id="saveEntryBtn" class="button-primary">Save Entry</button>
+                        <button type="button" id="cancelEntryBtn" class="button-secondary">Cancel</button>
+                    </div>
+
+
+                    <!-- Feedback Area within Modal -->
+                    <div id="feedbackArea" class="feedback">
+                        <!-- Feedback messages will appear here -->
+                    </div>
+
+                </form>
+
+                <!-- Template for a single task item (hidden) -->
+                <template id="taskTemplate">
+                    <div class="task-item">
+                        <div class="form-group task-narrative-group">
+                            <label>Task Narrative:</label>
+                            <textarea class="taskNarrative" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group task-time-group">
+                            <label>Time:</label>
+                            <input type="number" class="taskTime" step="0.1" min="0.1" required>
+                        </div>
+                        <button type="button" class="removeTaskBtn" title="Remove Task">×</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
