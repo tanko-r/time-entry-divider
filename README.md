@@ -7,5 +7,5 @@ I am a lawyer not a developer.  This app was created with Gemini 2.5 Pro 3-25.
 HOW TO USE THIS APP:
 
 Create a new folder on your computer called something like "Time Divider App" (any name is fine).
-Download this repository into that folder.
+Download this repository into that folder and unzip it if necessary.
 Open index.html in a web browser.  Everything else is self-explanatory.
